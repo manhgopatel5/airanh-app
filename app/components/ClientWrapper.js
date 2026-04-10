@@ -21,56 +21,78 @@ function Splash() {
       <div className="bg"></div>
 
 <div className="logo">
-  <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-    
-    <defs>
-      <linearGradient id="gradPin" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#FFB347"/>
-        <stop offset="100%" stopColor="#FF8C42"/>
-      </linearGradient>
+<svg viewBox="0 0 256 256">
 
-      <linearGradient id="gradBlue" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#5BC0EB"/>
-        <stop offset="100%" stopColor="#3A86FF"/>
-      </linearGradient>
-    </defs>
+  <defs>
+    <linearGradient id="gradPin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stopColor="#FFB347"/>
+      <stop offset="100%" stopColor="#FF8C42"/>
+    </linearGradient>
 
-    <path d="M128 24 C88 24 56 56 56 96 C56 150 128 224 128 224 C128 224 200 150 200 96 C200 56 168 24 128 24 Z"
-      fill="url(#gradPin)"/>
+    <linearGradient id="gradBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#5BC0EB"/>
+      <stop offset="100%" stopColor="#3A86FF"/>
+    </linearGradient>
+  </defs>
 
-    <circle cx="128" cy="96" r="26" fill="#FFE0A3"/>
+  {/* PIN */}
+  <g className="pin">
+    <path
+      d="M128 24
+         C88 24 56 56 56 96
+         C56 150 128 224 128 224
+         C128 224 200 150 200 96
+         C200 56 168 24 128 24 Z"
+      fill="url(#gradPin)"
+    />
+  </g>
 
-    <circle cx="118" cy="92" r="3.5" fill="#5A3E2B"/>
-    <circle cx="138" cy="92" r="3.5" fill="#5A3E2B"/>
+  {/* FACE */}
+  <circle cx="128" cy="96" r="26" fill="#FFE0A3"/>
 
-    <path d="M118 104 Q128 112 138 104"
-      stroke="#5A3E2B"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      fill="none"/>
+  {/* EYES */}
+  <circle className="eye" cx="118" cy="92" r="3.5" fill="#5A3E2B"/>
+  <circle className="eye" cx="138" cy="92" r="3.5" fill="#5A3E2B"/>
 
-    <path d="M168 64 Q196 84 196 112"
-      stroke="url(#gradBlue)"
-      strokeWidth="6"
-      strokeLinecap="round"
-      fill="none"/>
+  {/* SMILE */}
+  <path
+    d="M118 104 Q128 112 138 104"
+    stroke="#5A3E2B"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    fill="none"
+  />
 
-    <path d="M176 52 Q212 78 212 116"
-      stroke="url(#gradBlue)"
-      strokeWidth="6"
-      strokeLinecap="round"
-      fill="none"
-      opacity="0.7"/>
+  {/* WIFI WAVES */}
+  <path className="wave w1"
+    d="M168 64 Q196 84 196 112"
+    stroke="url(#gradBlue)"
+    strokeWidth="6"
+    strokeLinecap="round"
+    fill="none"
+  />
 
-    <path d="M64 148 Q110 110 152 148"
-      stroke="url(#gradBlue)"
-      strokeWidth="10"
-      strokeLinecap="round"
-      fill="none"/>
+  <path className="wave w2"
+    d="M176 52 Q212 78 212 116"
+    stroke="url(#gradBlue)"
+    strokeWidth="6"
+    strokeLinecap="round"
+    fill="none"
+  />
 
-    <circle cx="64" cy="148" r="6" fill="#3A86FF"/>
+  {/* CURVE AI */}
+  <path
+    d="M64 148 Q110 110 152 148"
+    stroke="url(#gradBlue)"
+    strokeWidth="10"
+    strokeLinecap="round"
+    fill="none"
+  />
 
-  </svg>
+  {/* DOT */}
+  <circle cx="64" cy="148" r="6" fill="#3A86FF"/>
+
+</svg>
 </div>
 
       <div className="text">
@@ -83,12 +105,11 @@ function Splash() {
         <span>H</span>
       </div>
 
-     <style jsx>{`
+    <style jsx>{`
   .splash {
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background: white;
 
     display: flex;
     flex-direction: column;
@@ -96,48 +117,132 @@ function Splash() {
     justify-content: center;
 
     overflow: hidden;
+    background: #ffffff;
   }
 
+  /* 🔥 nền blur kiểu iOS */
   .bg {
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg, #4aa3df, #8fd3f4);
-    filter: blur(100px);
-    opacity: 0.5;
+    filter: blur(120px);
+    opacity: 0.6;
+    animation: bgMove 8s ease-in-out infinite alternate;
   }
 
+  /* 🚀 LOGO */
   .logo {
-  width: 120px;
-  height: 120px;
-  z-index: 2;
-  animation: zoom 1.2s ease forwards, float 3s ease-in-out infinite;
-}
+    width: 140px;
+    height: 140px;
+    z-index: 2;
 
-.logo svg {
-  width: 100%;
-  height: 100%;
-}
+    animation:
+      zoom 1.2s ease forwards,
+      float 3s ease-in-out infinite,
+      glow 2.5s ease-in-out infinite;
+  }
 
+  .logo svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* 📍 PIN PULSE */
+  .pin {
+    transform-origin: center;
+    animation: pulse 2s infinite ease-in-out;
+  }
+
+  /* 👀 MẮT NHÁY */
+  .eye {
+    transform-origin: center;
+    animation: blink 4s infinite;
+  }
+
+  /* 📡 SÓNG */
+  .wave {
+    opacity: 0.6;
+  }
+
+  .w1 {
+    animation: wave 2s infinite;
+  }
+
+  .w2 {
+    animation: wave 2s infinite 0.6s;
+  }
+
+  /* ✨ TEXT */
   .text {
     z-index: 2;
+    margin-top: 16px;
   }
 
   .text span {
-    font-size: 32px;
-    font-weight: bold;
+    font-size: 34px;
+    font-weight: 800;
     color: #2b8fd6;
     display: inline-block;
+    letter-spacing: 2px;
+
     animation: bounce 1.2s infinite;
   }
 
+  /* ---------- ANIMATION ---------- */
+
   @keyframes zoom {
-    from { transform: scale(0.6); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+      transform: scale(0.6);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  @keyframes glow {
+    0%,100% { filter: drop-shadow(0 0 6px #4aa3df); }
+    50% { filter: drop-shadow(0 0 20px #4aa3df); }
+  }
+
+  @keyframes pulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+  }
+
+  @keyframes blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+  }
+
+  @keyframes wave {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.3);
+    }
   }
 
   @keyframes bounce {
     0%,100% { transform: translateY(0); }
     50% { transform: translateY(-12px); }
+  }
+
+  @keyframes bgMove {
+    from { transform: translateX(-30px) translateY(-20px); }
+    to { transform: translateX(30px) translateY(20px); }
   }
 `}</style>
     </div>
