@@ -38,100 +38,111 @@ export default function InstallPWA() {
   if (!show) return null;
 
   return (
-    <div className="overlay">
-      <div className="popup">
-        
-        <img src="/logo.PNG" className="logo" />
+   <div className="overlay">
+  <div className="popup">
 
-        <h3>🚀 Cài AI Rảnh</h3>
-        <p className="desc">
-          Mở nhanh hơn • Không quảng cáo • Trải nghiệm như app thật
-        </p>
+    <img src="/logo.PNG" className="logo" />
 
-        {isIOS ? (
-          <p className="ios">
-            👉 Nhấn <b>Share</b> → <b>Thêm vào màn hình chính</b>
-          </p>
-        ) : (
-          <button className="install" onClick={install}>
-            Cài ngay
-          </button>
-        )}
+    <h2 className="title">Cài AI Rảnh</h2>
 
-        <button className="later" onClick={close}>
-          Để sau
-        </button>
+    <p className="desc">
+      Mở nhanh hơn • Không quảng cáo <br/>
+      Trải nghiệm như app thật
+    </p>
 
+    {isIOS ? (
+      <div className="iosBox">
+        👉 Nhấn <b>Share / Chia sẻ</b> → <b>Thêm vào màn hình chính</b>
       </div>
+    ) : (
+      <button className="install" onClick={install}>
+        Cài ngay
+      </button>
+    )}
+
+    <button className="later" onClick={close}>
+      Để sau
+    </button>
+
+  </div>
 
       <style jsx>{`
-        .overlay {
-          position: fixed;
-          inset: 0;
-          background: rgba(0,0,0,0.4);
-          display: flex;
-          align-items: flex-end;
-          animation: fadeIn 0.3s ease;
-          z-index: 9999;
-        }
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: flex-end;
+    animation: fadeIn 0.3s ease;
+    z-index: 9999;
+  }
 
-        .popup {
-          width: 100%;
-          background: #fff;
-          border-radius: 20px 20px 0 0;
-          padding: 20px;
-          text-align: center;
-          animation: slideUp 0.4s ease;
-        }
+  .popup {
+    width: 100%;
+    background: #fff;
+    border-radius: 24px 24px 0 0;
+    padding: 25px 20px 30px;
+    text-align: center;
+    animation: slideUp 0.4s ease;
+  }
 
-        .logo {
-          width: 60px;
-          margin-bottom: 10px;
-        }
+  .logo {
+    width: 70px;
+    margin-bottom: 10px;
+  }
 
-        h3 {
-          margin: 5px 0;
-        }
+  .title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 10px 0;
+  }
 
-        .desc {
-          color: #666;
-          font-size: 14px;
-          margin-bottom: 15px;
-        }
+  .desc {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
 
-        .install {
-          background: #4aa3df;
-          color: white;
-          border: none;
-          padding: 12px;
-          border-radius: 10px;
-          width: 100%;
-          font-weight: bold;
-        }
+  .install {
+    background: linear-gradient(135deg, #4aa3df, #2b8fd6);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(74,163,223,0.4);
+  }
 
-        .later {
-          margin-top: 10px;
-          background: none;
-          border: none;
-          color: #999;
-        }
+  .iosBox {
+    background: #f5f7fa;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
 
-        .ios {
-          font-size: 14px;
-          color: #333;
-          margin-bottom: 10px;
-        }
+  .later {
+    margin-top: 12px;
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 14px;
+  }
 
-        @keyframes slideUp {
-          from { transform: translateY(100%); }
-          to { transform: translateY(0); }
-        }
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
 
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-      `}</style>
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+`}</style>
     </div>
   );
 }
