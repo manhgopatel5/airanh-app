@@ -3,21 +3,54 @@ import { useEffect, useState } from "react";
 
 export default function ClientWrapper({ children }) {
   const [loading, setLoading] = useState(true);
+const [hideSplash, setHideSplash] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2500);
+    useEffect(() => {
+  const t1 = setTimeout(() => {
+    setHideSplash(true); // bắt đầu fade
+  }, 2000);
+
+  const t2 = setTimeout(() => {
+    setLoading(false); // remove splash
+  }, 2600);
+
+  return () => {
+    clearTimeout(t1);
+    clearTimeout(t2);
+  };
+}, []);
 
     return () => clearTimeout(timer);
   }, []);
 
-  return loading ? <Splash /> : children;
+  return (
+  <>
+    {loading && <Splash hide={hideSplash} />}
+
+    <div className={`app ${!loading ? "show" : ""}`}>
+      {children}
+    </div>
+
+    <style jsx global>{`
+      .app {
+        opacity: 0;
+        transform: scale(1.02);
+        transition: all 0.6s ease;
+      }
+
+      .app.show {
+        opacity: 1;
+        transform: scale(1);
+      }
+    `}</style>
+  </>
+);
 }
 
-function Splash() {
+function Splash({ hide }) {
   return (
-    <div className="splash">
+    <div className={`splash ${hide ? "hide" : ""}`}>
       <div className="bg"></div>
 
 <div className="logo">
@@ -244,6 +277,12 @@ function Splash() {
     from { transform: translateX(-30px) translateY(-20px); }
     to { transform: translateX(30px) translateY(20px); }
   }
+  .splash.hide {
+  opacity: 0;
+  transform: scale(1.1);
+  filter: blur(10px);
+  transition: all 0.6s ease;
+}
 `}</style>
     </div>
   );
