@@ -5,25 +5,34 @@ export default function ClientWrapper({ children }) {
   const [loading, setLoading] = useState(true);
   const [hideSplash, setHideSplash] = useState(false);
 
-  useEffect(() => {
-    async function loadApp() {
-      try {
-        // 🔥 loading theo data thật (có thể thay API thật)
-        await fetch("https://jsonplaceholder.typicode.com/todos/1");
+ useEffect(() => {
+  async function loadApp() {
+    try {
+      const start = Date.now();
 
-        setHideSplash(true); // bắt đầu fade
+      await fetch("https://jsonplaceholder.typicode.com/todos/1");
+
+      const elapsed = Date.now() - start;
+
+      // đảm bảo splash tối thiểu 1.5s
+      const delay = Math.max(1500 - elapsed, 0);
+
+      setTimeout(() => {
+        setHideSplash(true);
 
         setTimeout(() => {
           setLoading(false);
         }, 600);
-      } catch (err) {
-        console.error(err);
-        setLoading(false);
-      }
-    }
+      }, delay);
 
-    loadApp();
-  }, []);
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+    }
+  }
+
+  loadApp();
+}, []);
 
   return (
     <>
@@ -199,17 +208,19 @@ function Splash({ hide }) {
   letter-spacing: 1px;
 }
 
-/* AI màu xanh */
 .ai {
   background: linear-gradient(135deg, #5BC0EB, #3A86FF);
+  background-clip: text;
   -webkit-background-clip: text;
+  color: transparent;
   -webkit-text-fill-color: transparent;
 }
 
-/* RẢNH màu cam */
 .ranh {
   background: linear-gradient(135deg, #FFB347, #FF8C42);
+  background-clip: text;
   -webkit-background-clip: text;
+  color: transparent;
   -webkit-text-fill-color: transparent;
 }
 
@@ -242,13 +253,7 @@ function Splash({ hide }) {
   }
 }
 
-        .text span {
-          font-size: 34px;
-          font-weight: 800;
-          color: #2b8fd6;
-          display: inline-block;
-          animation: bounce 1.2s infinite;
-        }
+        
 
         @keyframes zoom {
           from { transform: scale(0.6); opacity: 0; }
