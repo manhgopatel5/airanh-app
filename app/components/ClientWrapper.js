@@ -130,16 +130,18 @@ function Splash({ hide }) {
 
       <style jsx>{`
         .splash {
-          position: fixed;
-          inset: 0;
-          z-index: 9999;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          background: white;
-          overflow: hidden;
-        }
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+  overflow: hidden;
+}
 
         /* 🔥 FADE OUT */
         .splash.hide {
@@ -190,39 +192,38 @@ function Splash({ hide }) {
 .brand {
   z-index: 2;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
-/* AI + RẢNH */
+/* TITLE */
 .title {
-  font-size: 42px;
+  font-size: 52px; /* 🔥 to hơn */
   font-weight: 800;
   letter-spacing: 1px;
+  font-family: "Inter", sans-serif;
 }
 
+/* AI màu xanh giống ảnh */
 .ai {
-  background: linear-gradient(135deg, #5BC0EB, #3A86FF);
-  background-clip: text;
+  background: linear-gradient(135deg, #6fb7d6, #3a86ff);
   -webkit-background-clip: text;
-  color: transparent;
   -webkit-text-fill-color: transparent;
 }
 
+/* RẢNH màu cam giống ảnh */
 .ranh {
-  background: linear-gradient(135deg, #FFB347, #FF8C42);
-  background-clip: text;
+  background: linear-gradient(135deg, #f6b35a, #f08c3a);
   -webkit-background-clip: text;
-  color: transparent;
   -webkit-text-fill-color: transparent;
 }
 
 /* SUBTITLE */
 .subtitle {
-  margin-top: 8px;
-  font-size: 14px;
+  margin-top: 10px;
+  font-size: 16px;
   font-weight: 600;
-  color: #9aa0a6;
-  letter-spacing: 1px;
+  color: #9e9e9e;
+  letter-spacing: 1.5px;
 }
 
 /* 🔥 ANIMATION nhẹ */
