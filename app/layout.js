@@ -8,8 +8,6 @@ export default function RootLayout({ children }) {
         <ClientWrapper>
           {children}
         </ClientWrapper>
-
-  
         <InstallPWA />
       </body>
     </html>
