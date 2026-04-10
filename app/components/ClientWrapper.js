@@ -2,61 +2,53 @@
 import { useEffect, useState } from "react";
 
 export default function ClientWrapper({ children }) {
-  const [loading, setLoading] = useState(true);
+  const [showApp, setShowApp] = useState(false);
   const [hideSplash, setHideSplash] = useState(false);
 
  useEffect(() => {
   async function loadApp() {
-    try {
-      const start = Date.now();
+    const start = Date.now();
 
-      await fetch("https://jsonplaceholder.typicode.com/todos/1");
+    await fetch("https://jsonplaceholder.typicode.com/todos/1");
 
-      const elapsed = Date.now() - start;
+    const elapsed = Date.now() - start;
+    const delay = Math.max(1500 - elapsed, 0);
 
-      // đảm bảo splash tối thiểu 1.5s
-      const delay = Math.max(1500 - elapsed, 0);
+    setTimeout(() => {
+      setHideSplash(true); // fade splash
 
       setTimeout(() => {
-        setHideSplash(true);
+        setShowApp(true); // show app
+      }, 600);
 
-        setTimeout(() => {
-          setLoading(false);
-        }, 600);
-      }, delay);
-
-    } catch (err) {
-      console.error(err);
-      setLoading(false);
-    }
+    }, delay);
   }
 
   loadApp();
 }, []);
 
   return (
-    <>
-      {loading && <Splash hide={hideSplash} />}
+  <>
+    <Splash hide={hideSplash} />
 
-      <div className={`app ${!loading ? "show" : ""}`}>
-        {children}
-      </div>
+    <div className={`app ${showApp ? "show" : ""}`}>
+      {children}
+    </div>
 
-      <style jsx global>{`
-        .app {
-          opacity: 0;
-          transform: scale(1.02);
-          transition: all 0.6s ease;
-        }
+    <style jsx global>{`
+      .app {
+        opacity: 0;
+        transform: scale(1.02);
+        transition: all 0.6s ease;
+      }
 
-        .app.show {
-          opacity: 1;
-          transform: scale(1);
-        }
-      `}</style>
-    </>
-  );
-}
+      .app.show {
+        opacity: 1;
+        transform: scale(1);
+      }
+    `}</style>
+  </>
+);
 
 function Splash({ hide }) {
   return (
