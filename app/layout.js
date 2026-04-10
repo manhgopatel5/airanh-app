@@ -1,4 +1,4 @@
-import ClientWrapper from "./ClientWrapper";
+import ClientWrapper from "./components/ClientWrapper";
 import InstallPWA from "./components/InstallPWA";
 
 export default function RootLayout({ children }) {
