@@ -49,7 +49,7 @@ export default function ClientWrapper({ children }) {
     `}</style>
   </>
 );
-
+}
 function Splash({ hide }) {
   return (
     <div className={`splash ${hide ? "hide" : ""}`}>
