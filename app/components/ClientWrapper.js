@@ -56,8 +56,10 @@ function Splash({ hide }) {
       
       <div className="bg"></div>
 
-      {/* 🔥 LOGO SVG */}
-      <div className="logo">
+      <div 
+  className="logo"
+  onClick={(e) => e.currentTarget.classList.toggle("active")}
+>
 <svg viewBox="0 0 360 220">
 
   <defs>
@@ -72,39 +74,37 @@ function Splash({ hide }) {
     </linearGradient>
   </defs>
 
-  {/* A nét cong */}
-  <path
-    d="M40 150 
-       Q90 40 140 150"
+  {/* A */}
+  <path className="a"
+    d="M40 150 Q90 40 140 150"
     stroke="url(#gBlue)"
     strokeWidth="18"
     strokeLinecap="round"
     fill="none"
   />
 
-  {/* mũi tên trong A */}
-  <path
-    d="M90 125 L90 90 
-       M90 90 L70 110 
-       M90 90 L110 110"
+  {/* arrow */}
+  <path className="arrow"
+    d="M90 125 L90 90 M90 90 L70 110 M90 90 L110 110"
     stroke="url(#gBlue)"
     strokeWidth="12"
     strokeLinecap="round"
   />
 
-  {/* i */}
-  <circle cx="165" cy="55" r="12" fill="url(#gBlue)" />
-  <path
+  {/* dot */}
+  <circle className="dot" cx="165" cy="55" r="12" fill="url(#gBlue)" />
+
+  {/* line */}
+  <path className="iline"
     d="M165 75 L165 150"
     stroke="url(#gBlue)"
     strokeWidth="18"
     strokeLinecap="round"
   />
 
-  {/* nét nối i → pin */}
-  <path
-    d="M165 150 
-       Q210 120 230 150"
+  {/* curve */}
+  <path className="curve"
+    d="M165 150 Q210 120 230 150"
     stroke="url(#gBlue)"
     strokeWidth="18"
     strokeLinecap="round"
@@ -112,18 +112,13 @@ function Splash({ hide }) {
   />
 
   {/* pin */}
-  <path
-    d="M230 60
-       C190 60 170 90 170 120
-       C170 170 230 210 230 210
-       C230 210 290 170 290 120
-       C290 90 270 60 230 60 Z"
+  <path className="pin"
+    d="M230 60 C190 60 170 90 170 120 C170 170 230 210 230 210 C230 210 290 170 290 120 C290 90 270 60 230 60 Z"
     fill="url(#gOrange)"
   />
 
-  {/* mặt */}
+  {/* face */}
   <circle cx="230" cy="120" r="22" fill="#ffe0a3"/>
-
   <circle cx="220" cy="115" r="3" fill="#5a3e2b"/>
   <circle cx="240" cy="115" r="3" fill="#5a3e2b"/>
 
@@ -135,8 +130,8 @@ function Splash({ hide }) {
     strokeLinecap="round"
   />
 
-  {/* sóng */}
-  <path
+  {/* waves */}
+  <path className="wave w1"
     d="M270 80 Q310 110 310 150"
     stroke="url(#gBlue)"
     strokeWidth="10"
@@ -144,13 +139,12 @@ function Splash({ hide }) {
     fill="none"
   />
 
-  <path
+  <path className="wave w2"
     d="M285 70 Q340 110 340 160"
     stroke="url(#gBlue)"
     strokeWidth="10"
     strokeLinecap="round"
     fill="none"
-    opacity="0.6"
   />
 
 </svg>
@@ -199,33 +193,74 @@ function Splash({ hide }) {
           animation: bgMove 8s infinite alternate;
         }
 
-        .logo {
+        /* 🔥 LOGO ANIMATION MỚI */
+
+.logo {
   width: 260px;
-  height: auto;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
-        .logo svg {
-          width: 100%;
-          height: 100%;
-        }
+/* DOT bay nhẹ */
+.dot {
+  animation: dotMove 2.5s ease-in-out infinite;
+}
 
-        .pin {
-          animation: pulse 2s infinite;
-        }
+@keyframes dotMove {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
 
-        .eye {
-          animation: blink 4s infinite;
-          transform-origin: center;
-        }
+/* curve sống */
+.curve {
+  animation: draw 2s ease-in-out infinite alternate;
+}
 
-        .wave {
-          opacity: 0.6;
-        }
+@keyframes draw {
+  from { stroke-dasharray: 0 200; }
+  to { stroke-dasharray: 200 0; }
+}
 
-        .w1 { animation: wave 2s infinite; }
-        .w2 { animation: wave 2s infinite 0.6s; }
+/* pin thở */
+.pin {
+  transform-origin: center;
+  animation: pulse 2s infinite;
+}
 
+/* sóng lan */
+.wave {
+  opacity: 0.5;
+}
+
+.w1 {
+  animation: wave 2s infinite;
+}
+
+.w2 {
+  animation: wave 2s infinite 0.6s;
+}
+
+@keyframes wave {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.4); }
+}
+
+/* CLICK EFFECT */
+.logo.active .pin {
+  animation: explode 0.5s ease;
+}
+
+@keyframes explode {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.logo.active .dot {
+  transform: translateY(-20px) scale(1.2);
+  transition: 0.4s;
+}
         /* 🔥 BRAND TEXT */
 .brand {
   z-index: 2;
