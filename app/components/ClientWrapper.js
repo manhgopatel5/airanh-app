@@ -200,11 +200,10 @@ function Splash({ hide }) {
         }
 
         .logo {
-          width: 140px;
-          height: 140px;
-          z-index: 2;
-          animation: zoom 1.2s ease forwards, float 3s infinite;
-        }
+  width: 260px;
+  height: auto;
+  margin-bottom: 10px;
+}
 
         .logo svg {
           width: 100%;
