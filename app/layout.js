@@ -9,7 +9,7 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#4aa3df" />
       </head>
 
-      <body style={{ margin: 0 }}>
+      <body style={{ margin: 0, overflow: "hidden" }}>
         <ClientWrapper>
           {children}
         </ClientWrapper>
