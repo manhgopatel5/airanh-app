@@ -116,15 +116,16 @@ function Splash({ hide }) {
         </svg>
       </div>
 
-      <div className="text">
-        <span>A</span>
-        <span>I</span>
-        <span> </span>
-        <span>R</span>
-        <span>Ả</span>
-        <span>N</span>
-        <span>H</span>
-      </div>
+     <div className="brand">
+  <div className="title">
+    <span className="ai">AI</span>
+    <span className="ranh"> RẢNH</span>
+  </div>
+
+  <div className="subtitle">
+    KẾT NỐI CÔNG VIỆC GẦN BẠN
+  </div>
+</div>
 
       <style jsx>{`
         .splash {
@@ -184,10 +185,62 @@ function Splash({ hide }) {
         .w1 { animation: wave 2s infinite; }
         .w2 { animation: wave 2s infinite 0.6s; }
 
-        .text {
-          margin-top: 16px;
-          z-index: 2;
-        }
+        /* 🔥 BRAND TEXT */
+.brand {
+  z-index: 2;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* AI + RẢNH */
+.title {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* AI màu xanh */
+.ai {
+  background: linear-gradient(135deg, #5BC0EB, #3A86FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* RẢNH màu cam */
+.ranh {
+  background: linear-gradient(135deg, #FFB347, #FF8C42);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* SUBTITLE */
+.subtitle {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #9aa0a6;
+  letter-spacing: 1px;
+}
+
+/* 🔥 ANIMATION nhẹ */
+.title {
+  animation: fadeUp 0.8s ease;
+}
+
+.subtitle {
+  animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
         .text span {
           font-size: 34px;
