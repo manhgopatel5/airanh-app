@@ -20,7 +20,7 @@ function Splash() {
     <div className="splash">
       <div className="bg"></div>
 
-      <img src="/logo.PNG" className="logo" />
+<img src="/logo.svg" className="logo" />
 
       <div className="text">
         <span>A</span>
