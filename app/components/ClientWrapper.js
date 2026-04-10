@@ -58,64 +58,103 @@ function Splash({ hide }) {
 
       {/* 🔥 LOGO SVG */}
       <div className="logo">
-        <svg viewBox="0 0 256 256">
+<svg viewBox="0 0 360 220">
 
-          <defs>
-            <linearGradient id="gradPin" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#FFB347"/>
-              <stop offset="100%" stopColor="#FF8C42"/>
-            </linearGradient>
+  <defs>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#7cc0d8"/>
+      <stop offset="100%" stopColor="#4a90e2"/>
+    </linearGradient>
 
-            <linearGradient id="gradBlue" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#5BC0EB"/>
-              <stop offset="100%" stopColor="#3A86FF"/>
-            </linearGradient>
-          </defs>
+    <linearGradient id="gOrange" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stopColor="#f7b45a"/>
+      <stop offset="100%" stopColor="#f08c3a"/>
+    </linearGradient>
+  </defs>
 
-          <g className="pin">
-            <path d="M128 24 C88 24 56 56 56 96 C56 150 128 224 128 224 C128 224 200 150 200 96 C200 56 168 24 128 24 Z"
-              fill="url(#gradPin)" />
-          </g>
+  {/* A nét cong */}
+  <path
+    d="M40 150 
+       Q90 40 140 150"
+    stroke="url(#gBlue)"
+    strokeWidth="18"
+    strokeLinecap="round"
+    fill="none"
+  />
 
-          <circle cx="128" cy="96" r="26" fill="#FFE0A3"/>
+  {/* mũi tên trong A */}
+  <path
+    d="M90 125 L90 90 
+       M90 90 L70 110 
+       M90 90 L110 110"
+    stroke="url(#gBlue)"
+    strokeWidth="12"
+    strokeLinecap="round"
+  />
 
-          <circle className="eye" cx="118" cy="92" r="3.5" fill="#5A3E2B"/>
-          <circle className="eye" cx="138" cy="92" r="3.5" fill="#5A3E2B"/>
+  {/* i */}
+  <circle cx="165" cy="55" r="12" fill="url(#gBlue)" />
+  <path
+    d="M165 75 L165 150"
+    stroke="url(#gBlue)"
+    strokeWidth="18"
+    strokeLinecap="round"
+  />
 
-          <path d="M118 104 Q128 112 138 104"
-            stroke="#5A3E2B"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            fill="none"
-          />
+  {/* nét nối i → pin */}
+  <path
+    d="M165 150 
+       Q210 120 230 150"
+    stroke="url(#gBlue)"
+    strokeWidth="18"
+    strokeLinecap="round"
+    fill="none"
+  />
 
-          <path className="wave w1"
-            d="M168 64 Q196 84 196 112"
-            stroke="url(#gradBlue)"
-            strokeWidth="6"
-            strokeLinecap="round"
-            fill="none"
-          />
+  {/* pin */}
+  <path
+    d="M230 60
+       C190 60 170 90 170 120
+       C170 170 230 210 230 210
+       C230 210 290 170 290 120
+       C290 90 270 60 230 60 Z"
+    fill="url(#gOrange)"
+  />
 
-          <path className="wave w2"
-            d="M176 52 Q212 78 212 116"
-            stroke="url(#gradBlue)"
-            strokeWidth="6"
-            strokeLinecap="round"
-            fill="none"
-          />
+  {/* mặt */}
+  <circle cx="230" cy="120" r="22" fill="#ffe0a3"/>
 
-          <path d="M64 148 Q110 110 152 148"
-            stroke="url(#gradBlue)"
-            strokeWidth="10"
-            strokeLinecap="round"
-            fill="none"
-          />
+  <circle cx="220" cy="115" r="3" fill="#5a3e2b"/>
+  <circle cx="240" cy="115" r="3" fill="#5a3e2b"/>
 
-          <circle cx="64" cy="148" r="6" fill="#3A86FF"/>
+  <path
+    d="M220 130 Q230 138 240 130"
+    stroke="#5a3e2b"
+    strokeWidth="3"
+    fill="none"
+    strokeLinecap="round"
+  />
 
-        </svg>
-      </div>
+  {/* sóng */}
+  <path
+    d="M270 80 Q310 110 310 150"
+    stroke="url(#gBlue)"
+    strokeWidth="10"
+    strokeLinecap="round"
+    fill="none"
+  />
+
+  <path
+    d="M285 70 Q340 110 340 160"
+    stroke="url(#gBlue)"
+    strokeWidth="10"
+    strokeLinecap="round"
+    fill="none"
+    opacity="0.6"
+  />
+
+</svg>
+</div>
 
      <div className="brand">
   <div className="title">
