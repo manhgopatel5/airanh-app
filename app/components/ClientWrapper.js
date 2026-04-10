@@ -3,130 +3,118 @@ import { useEffect, useState } from "react";
 
 export default function ClientWrapper({ children }) {
   const [loading, setLoading] = useState(true);
-const [hideSplash, setHideSplash] = useState(false);
+  const [hideSplash, setHideSplash] = useState(false);
 
   useEffect(() => {
-    useEffect(() => {
-  const t1 = setTimeout(() => {
-    setHideSplash(true); // bắt đầu fade
-  }, 2000);
+    async function loadApp() {
+      try {
+        // 🔥 loading theo data thật (có thể thay API thật)
+        await fetch("https://jsonplaceholder.typicode.com/todos/1");
 
-  const t2 = setTimeout(() => {
-    setLoading(false); // remove splash
-  }, 2600);
+        setHideSplash(true); // bắt đầu fade
 
-  return () => {
-    clearTimeout(t1);
-    clearTimeout(t2);
-  };
-}, []);
+        setTimeout(() => {
+          setLoading(false);
+        }, 600);
+      } catch (err) {
+        console.error(err);
+        setLoading(false);
+      }
+    }
 
-    return () => clearTimeout(timer);
+    loadApp();
   }, []);
 
   return (
-  <>
-    {loading && <Splash hide={hideSplash} />}
+    <>
+      {loading && <Splash hide={hideSplash} />}
 
-    <div className={`app ${!loading ? "show" : ""}`}>
-      {children}
-    </div>
+      <div className={`app ${!loading ? "show" : ""}`}>
+        {children}
+      </div>
 
-    <style jsx global>{`
-      .app {
-        opacity: 0;
-        transform: scale(1.02);
-        transition: all 0.6s ease;
-      }
+      <style jsx global>{`
+        .app {
+          opacity: 0;
+          transform: scale(1.02);
+          transition: all 0.6s ease;
+        }
 
-      .app.show {
-        opacity: 1;
-        transform: scale(1);
-      }
-    `}</style>
-  </>
-);
+        .app.show {
+          opacity: 1;
+          transform: scale(1);
+        }
+      `}</style>
+    </>
+  );
 }
 
 function Splash({ hide }) {
   return (
     <div className={`splash ${hide ? "hide" : ""}`}>
+      
       <div className="bg"></div>
 
-<div className="logo">
-<svg viewBox="0 0 256 256">
+      {/* 🔥 LOGO SVG */}
+      <div className="logo">
+        <svg viewBox="0 0 256 256">
 
-  <defs>
-    <linearGradient id="gradPin" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stopColor="#FFB347"/>
-      <stop offset="100%" stopColor="#FF8C42"/>
-    </linearGradient>
+          <defs>
+            <linearGradient id="gradPin" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#FFB347"/>
+              <stop offset="100%" stopColor="#FF8C42"/>
+            </linearGradient>
 
-    <linearGradient id="gradBlue" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stopColor="#5BC0EB"/>
-      <stop offset="100%" stopColor="#3A86FF"/>
-    </linearGradient>
-  </defs>
+            <linearGradient id="gradBlue" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#5BC0EB"/>
+              <stop offset="100%" stopColor="#3A86FF"/>
+            </linearGradient>
+          </defs>
 
-  {/* PIN */}
-  <g className="pin">
-    <path
-      d="M128 24
-         C88 24 56 56 56 96
-         C56 150 128 224 128 224
-         C128 224 200 150 200 96
-         C200 56 168 24 128 24 Z"
-      fill="url(#gradPin)"
-    />
-  </g>
+          <g className="pin">
+            <path d="M128 24 C88 24 56 56 56 96 C56 150 128 224 128 224 C128 224 200 150 200 96 C200 56 168 24 128 24 Z"
+              fill="url(#gradPin)" />
+          </g>
 
-  {/* FACE */}
-  <circle cx="128" cy="96" r="26" fill="#FFE0A3"/>
+          <circle cx="128" cy="96" r="26" fill="#FFE0A3"/>
 
-  {/* EYES */}
-  <circle className="eye" cx="118" cy="92" r="3.5" fill="#5A3E2B"/>
-  <circle className="eye" cx="138" cy="92" r="3.5" fill="#5A3E2B"/>
+          <circle className="eye" cx="118" cy="92" r="3.5" fill="#5A3E2B"/>
+          <circle className="eye" cx="138" cy="92" r="3.5" fill="#5A3E2B"/>
 
-  {/* SMILE */}
-  <path
-    d="M118 104 Q128 112 138 104"
-    stroke="#5A3E2B"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-    fill="none"
-  />
+          <path d="M118 104 Q128 112 138 104"
+            stroke="#5A3E2B"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            fill="none"
+          />
 
-  {/* WIFI WAVES */}
-  <path className="wave w1"
-    d="M168 64 Q196 84 196 112"
-    stroke="url(#gradBlue)"
-    strokeWidth="6"
-    strokeLinecap="round"
-    fill="none"
-  />
+          <path className="wave w1"
+            d="M168 64 Q196 84 196 112"
+            stroke="url(#gradBlue)"
+            strokeWidth="6"
+            strokeLinecap="round"
+            fill="none"
+          />
 
-  <path className="wave w2"
-    d="M176 52 Q212 78 212 116"
-    stroke="url(#gradBlue)"
-    strokeWidth="6"
-    strokeLinecap="round"
-    fill="none"
-  />
+          <path className="wave w2"
+            d="M176 52 Q212 78 212 116"
+            stroke="url(#gradBlue)"
+            strokeWidth="6"
+            strokeLinecap="round"
+            fill="none"
+          />
 
-  {/* CURVE AI */}
-  <path
-    d="M64 148 Q110 110 152 148"
-    stroke="url(#gradBlue)"
-    strokeWidth="10"
-    strokeLinecap="round"
-    fill="none"
-  />
+          <path d="M64 148 Q110 110 152 148"
+            stroke="url(#gradBlue)"
+            strokeWidth="10"
+            strokeLinecap="round"
+            fill="none"
+          />
 
-  {/* DOT */}
-  <circle cx="64" cy="148" r="6" fill="#3A86FF"/>
+          <circle cx="64" cy="148" r="6" fill="#3A86FF"/>
 
-</svg>
-</div>
+        </svg>
+      </div>
 
       <div className="text">
         <span>A</span>
@@ -138,152 +126,113 @@ function Splash({ hide }) {
         <span>H</span>
       </div>
 
-    <style jsx>{`
-  .splash {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
+      <style jsx>{`
+        .splash {
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: white;
+          overflow: hidden;
+        }
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+        /* 🔥 FADE OUT */
+        .splash.hide {
+          opacity: 0;
+          transform: scale(1.1);
+          filter: blur(10px);
+          transition: all 0.6s ease;
+        }
 
-    overflow: hidden;
-    background: #ffffff;
-  }
+        .bg {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, #4aa3df, #8fd3f4);
+          filter: blur(120px);
+          opacity: 0.6;
+          animation: bgMove 8s infinite alternate;
+        }
 
-  /* 🔥 nền blur kiểu iOS */
-  .bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #4aa3df, #8fd3f4);
-    filter: blur(120px);
-    opacity: 0.6;
-    animation: bgMove 8s ease-in-out infinite alternate;
-  }
+        .logo {
+          width: 140px;
+          height: 140px;
+          z-index: 2;
+          animation: zoom 1.2s ease forwards, float 3s infinite;
+        }
 
-  /* 🚀 LOGO */
-  .logo {
-    width: 140px;
-    height: 140px;
-    z-index: 2;
+        .logo svg {
+          width: 100%;
+          height: 100%;
+        }
 
-    animation:
-      zoom 1.2s ease forwards,
-      float 3s ease-in-out infinite,
-      glow 2.5s ease-in-out infinite;
-  }
+        .pin {
+          animation: pulse 2s infinite;
+        }
 
-  .logo svg {
-    width: 100%;
-    height: 100%;
-  }
+        .eye {
+          animation: blink 4s infinite;
+          transform-origin: center;
+        }
 
-  /* 📍 PIN PULSE */
-  .pin {
-    transform-origin: center;
-    animation: pulse 2s infinite ease-in-out;
-  }
+        .wave {
+          opacity: 0.6;
+        }
 
-  /* 👀 MẮT NHÁY */
-  .eye {
-    transform-origin: center;
-    animation: blink 4s infinite;
-  }
+        .w1 { animation: wave 2s infinite; }
+        .w2 { animation: wave 2s infinite 0.6s; }
 
-  /* 📡 SÓNG */
-  .wave {
-    opacity: 0.6;
-  }
+        .text {
+          margin-top: 16px;
+          z-index: 2;
+        }
 
-  .w1 {
-    animation: wave 2s infinite;
-  }
+        .text span {
+          font-size: 34px;
+          font-weight: 800;
+          color: #2b8fd6;
+          display: inline-block;
+          animation: bounce 1.2s infinite;
+        }
 
-  .w2 {
-    animation: wave 2s infinite 0.6s;
-  }
+        @keyframes zoom {
+          from { transform: scale(0.6); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
 
-  /* ✨ TEXT */
-  .text {
-    z-index: 2;
-    margin-top: 16px;
-  }
+        @keyframes float {
+          0%,100% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
+        }
 
-  .text span {
-    font-size: 34px;
-    font-weight: 800;
-    color: #2b8fd6;
-    display: inline-block;
-    letter-spacing: 2px;
+        @keyframes pulse {
+          0%,100% { transform: scale(1); }
+          50% { transform: scale(1.06); }
+        }
 
-    animation: bounce 1.2s infinite;
-  }
+        @keyframes blink {
+          0%,90%,100% { transform: scaleY(1); }
+          95% { transform: scaleY(0.1); }
+        }
 
-  /* ---------- ANIMATION ---------- */
+        @keyframes wave {
+          0% { opacity: 0; transform: scale(0.8); }
+          50% { opacity: 1; }
+          100% { opacity: 0; transform: scale(1.3); }
+        }
 
-  @keyframes zoom {
-    from {
-      transform: scale(0.6);
-      opacity: 0;
-    }
-    to {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
+        @keyframes bounce {
+          0%,100% { transform: translateY(0); }
+          50% { transform: translateY(-12px); }
+        }
 
-  @keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-
-  @keyframes glow {
-    0%,100% { filter: drop-shadow(0 0 6px #4aa3df); }
-    50% { filter: drop-shadow(0 0 20px #4aa3df); }
-  }
-
-  @keyframes pulse {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.06); }
-  }
-
-  @keyframes blink {
-    0%, 90%, 100% { transform: scaleY(1); }
-    95% { transform: scaleY(0.1); }
-  }
-
-  @keyframes wave {
-    0% {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-      transform: scale(1.3);
-    }
-  }
-
-  @keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-  }
-
-  @keyframes bgMove {
-    from { transform: translateX(-30px) translateY(-20px); }
-    to { transform: translateX(30px) translateY(20px); }
-  }
-  .splash.hide {
-  opacity: 0;
-  transform: scale(1.1);
-  filter: blur(10px);
-  transition: all 0.6s ease;
-}
-`}</style>
+        @keyframes bgMove {
+          from { transform: translateX(-30px); }
+          to { transform: translateX(30px); }
+        }
+      `}</style>
     </div>
   );
 }
