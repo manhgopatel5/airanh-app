@@ -32,48 +32,57 @@ function Splash() {
         <span>H</span>
       </div>
 
-      <style jsx>{`
-        .splash {
-          position: fixed;
-          inset: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-        }
+     <style jsx>{`
+  .splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: white;
 
-        .bg {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(135deg, #4aa3df, #8fd3f4);
-          filter: blur(80px);
-          opacity: 0.6;
-        }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-        .logo {
-          width: 120px;
-          z-index: 1;
-          animation: zoom 1.2s ease forwards;
-        }
+    overflow: hidden;
+  }
 
-        .text span {
-          font-size: 32px;
-          font-weight: bold;
-          color: #2b8fd6;
-          display: inline-block;
-          animation: bounce 1.2s infinite;
-        }
+  .bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #4aa3df, #8fd3f4);
+    filter: blur(100px);
+    opacity: 0.5;
+  }
 
-        @keyframes zoom {
-          from { transform: scale(0.6); opacity: 0; }
-          to { transform: scale(1); opacity: 1; }
-        }
+  .logo {
+    width: 120px;
+    z-index: 2;
+    animation: zoom 1.2s ease forwards;
+  }
 
-        @keyframes bounce {
-          0%,100% { transform: translateY(0); }
-          50% { transform: translateY(-12px); }
-        }
-      `}</style>
+  .text {
+    z-index: 2;
+  }
+
+  .text span {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2b8fd6;
+    display: inline-block;
+    animation: bounce 1.2s infinite;
+  }
+
+  @keyframes zoom {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+`}</style>
     </div>
   );
 }
