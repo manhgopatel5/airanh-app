@@ -1,4 +1,5 @@
 "use client";
+import InstallPWA from "./components/InstallPWA";
 import { useEffect, useState } from "react";
 
 export default function RootLayout({ children }) {
@@ -15,7 +16,10 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <body>
+    <>
         {loading ? <Splash /> : children}
+        <InstallPWA />
+          </>
       </body>
     </html>
   );
