@@ -1,15 +1,19 @@
 {
   "name": "AI Rảnh",
-  "short_name": "AI Ranh",
+  "short_name": "AI Rảnh",
+  "description": "Kết nối công việc gần bạn",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#4aa3df",
   "icons": [
     {
-      "src": "/logo.PNG",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }
